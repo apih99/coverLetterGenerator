@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Cover Letter Generator
+
+A Next.js web application that generates professional cover letters using the Gemini API. Users can upload their resume as a PDF, enter the company name and position, and the AI will generate a personalized cover letter that can be downloaded as a PDF.
+
+## Features
+
+- Upload your resume as a PDF
+- Generate personalized cover letters based on your resume and job details
+- Download cover letters as PDF files
+- Modern, responsive UI built with Next.js and Tailwind CSS
+- Powered by Google's Gemini AI
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18.x or later
+- A Gemini API key from [Google AI Studio](https://aistudio.google.com/)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/cover-letter-generator.git
+   cd cover-letter-generator
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. **IMPORTANT**: Create a `.env.local` file in the root directory with your Gemini API key:
+   ```
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+   You can get a Gemini API key from [Google AI Studio](https://aistudio.google.com/).
+
+4. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Key Setup (Required)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application requires a Gemini API key to function. Without it, you'll see a "Failed to generate cover letter" error.
 
-## Learn More
+1. Go to [Google AI Studio](https://aistudio.google.com/)
+2. Create an account or sign in
+3. Navigate to the API keys section
+4. Create a new API key
+5. Copy the key and add it to your `.env.local` file as shown above
 
-To learn more about Next.js, take a look at the following resources:
+## How to Use
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fill in your personal information (name, email, phone)
+2. Enter the company name and position you're applying for
+3. Upload your resume as a PDF file
+4. Click "Generate Cover Letter"
+5. Review the generated cover letter
+6. Click "Download as PDF" to save the cover letter
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Technologies Used
 
-## Deploy on Vercel
+- Next.js
+- React
+- Tailwind CSS
+- Google Gemini API
+- React-PDF for PDF generation
+- pdf-parse for PDF text extraction
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
+
+## Acknowledgments
+
+- Google Gemini API for AI text generation
+- Next.js team for the excellent framework
