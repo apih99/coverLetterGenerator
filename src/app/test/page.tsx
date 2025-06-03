@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export default function TestPage() {
-  const [envData, setEnvData] = useState<any>(null);
+  const [envData, setEnvData] = useState<Record<string, unknown> | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [testResult, setTestResult] = useState<string | null>(null);
@@ -15,8 +15,9 @@ export default function TestPage() {
         const response = await fetch('/api/test-env');
         const data = await response.json();
         setEnvData(data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }
@@ -51,8 +52,9 @@ export default function TestPage() {
       }
       
       setTestResult(data.coverLetter || JSON.stringify(data));
-    } catch (err: any) {
-      setTestResult(`Error: ${err.message}`);
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      setTestResult(`Error: ${errorMessage}`);
     } finally {
       setTestLoading(false);
     }

@@ -62,9 +62,10 @@ export const generateCoverLetter = async (
 
     const data = await response.json();
     return data.coverLetter;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error generating cover letter:", error);
-    if (error.message.includes("API key")) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    if (errorMessage.includes("API key")) {
       throw new Error("Gemini API key is not configured. Please add it to your .env.local file.");
     }
     throw error;

@@ -13,11 +13,12 @@ export async function GET() {
       message: "Environment check",
       environment: envVars,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
       {
         error: "Failed to check environment",
-        details: error.message,
+        details: errorMessage,
       },
       { status: 500 }
     );

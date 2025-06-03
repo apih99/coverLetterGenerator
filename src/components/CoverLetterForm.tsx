@@ -96,8 +96,9 @@ const CoverLetterForm = () => {
       setCoverLetter(generatedText);
       setEditedCoverLetter(generatedText);
       setIsEditing(false);
-    } catch (err: any) {
-      setError(err.message || 'Failed to generate cover letter');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to generate cover letter';
+      setError(errorMessage);
     } finally {
       setIsGenerating(false);
     }
@@ -299,7 +300,7 @@ const CoverLetterForm = () => {
                 placeholder="Edit your cover letter here..."
               />
               <p className="text-sm text-gray-500">
-                Make any changes to your cover letter above. Click "Save" to keep your changes or "Cancel" to discard them.
+                Make any changes to your cover letter above. Click &quot;Save&quot; to keep your changes or &quot;Cancel&quot; to discard them.
               </p>
             </div>
           ) : (

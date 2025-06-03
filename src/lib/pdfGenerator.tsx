@@ -64,8 +64,7 @@ const CoverLetterPDF: React.FC<CoverLetterPDFProps> = ({
   userName = 'Your Name', 
   userEmail = 'your.email@example.com',
   userPhone = '123-456-7890',
-  companyName = '',
-  position = ''
+  companyName = ''
 }) => {
   // Format current date
   const currentDate = new Date().toLocaleDateString('en-US', {
@@ -143,7 +142,6 @@ export const PDFDownloadButton: React.FC<PDFDownloadButtonProps> = ({
           userEmail={userEmail}
           userPhone={userPhone}
           companyName={companyName}
-          position={position}
         />
       }
       fileName={`Cover_Letter_${companyName.replace(/\s+/g, '_')}_${position.replace(/\s+/g, '_')}.pdf`}
@@ -158,7 +156,7 @@ export const PDFDownloadButton: React.FC<PDFDownloadButtonProps> = ({
         cursor: 'pointer',
       }}
     >
-      {({ blob, url, loading, error }) =>
+      {({ loading }) =>
         loading ? 'Generating PDF...' : 'Download as PDF'
       }
     </PDFDownloadLink>

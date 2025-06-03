@@ -97,22 +97,24 @@ export async function POST(request: NextRequest) {
       const coverLetter = response.text();
 
       return NextResponse.json({ coverLetter });
-    } catch (apiError: any) {
+    } catch (apiError: unknown) {
       console.error("Gemini API error:", apiError);
+      const errorMessage = apiError instanceof Error ? apiError.message : 'Unknown API error';
       return NextResponse.json(
         { 
           error: "Error calling Gemini API", 
-          details: apiError.message || "Unknown API error" 
+          details: errorMessage
         },
         { status: 500 }
       );
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error generating cover letter:", error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
       { 
         error: "Failed to generate cover letter",
-        details: error.message || "Unknown error"
+        details: errorMessage
       },
       { status: 500 }
     );

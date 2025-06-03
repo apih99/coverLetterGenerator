@@ -39,8 +39,9 @@ const SimplePdfUploader: React.FC<SimplePdfUploaderProps> = ({
       
       const data = await response.json();
       onTextExtracted(data.text);
-    } catch (err: any) {
-      onError(err.message || 'Failed to extract text from PDF');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to extract text from PDF';
+      onError(errorMessage);
     } finally {
       onExtractionEnd();
     }
